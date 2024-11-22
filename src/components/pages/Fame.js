@@ -33,7 +33,7 @@ const RightCrown = styled.img`
   width: 272px;
   height: 272px;
   position: absolute;
-  top: 135px;
+  top: 155px;
   right: 500px;
   z-index: 10;
 `;
@@ -41,7 +41,7 @@ const LeftCrown = styled.img`
   width: 272px;
   height: 272px;
   position: absolute;
-  top: 130px;
+  top: 155px;
   right: 1360px;
   z-index: 10;
 `;

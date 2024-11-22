@@ -148,7 +148,6 @@ const CardDetail = () => {
             disabled={addBidMutation.isLoading}
           />
         </Form>
-
         <BidderTitle>입찰자 리스트</BidderTitle>
         <ListContain>
           <WhiteBackground>
@@ -230,6 +229,7 @@ const ListContain = styled.div`
   flex-direction: column;
   border-radius: 13.333px;
   border: 4px solid #000;
+  margin-bottom: 100px;
 `;
 const UserContain = styled.div`
   display: flex;
@@ -257,7 +257,7 @@ const Contain = styled.div`
 `;
 
 const Container = styled.div`
-  width: 2148px; /* 네비게이션 바의 고정 너비 */
+  width: 100%; /* 네비게이션 바의 고정 너비 */
   height: 1204px; /* 부모 컨테이너 높이 전부 차지 */
   background-image: url(${backgroundImg}); /* 배경 이미지 설정 */
   background-size: 100%;
@@ -265,6 +265,10 @@ const Container = styled.div`
   object-fit: contain;
   display: flex;
   flex-shrink: 0;
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera에서 스크롤바 숨기기 */
+  }
 `;
 const ScrollableImageContainer = styled.div`
   padding-top: 225px;
@@ -282,7 +286,8 @@ const ScrollableImageContainer = styled.div`
 const TitleImage = styled.img`
   width: 673px;
   height: 79px;
-  margin-bottom: 70px;
+  margin-bottom: 53px;
+  margin-top: 13px;
 `;
 
 const DetailImage = styled.img`
@@ -402,6 +407,11 @@ const BidAmount = styled.div`
   width: 500px;
   font-weight: bold;
   font-size: 32px;
+  max-width: 500px; /* 최대 너비를 설정 */
+  overflow: hidden; /* 넘치는 내용 숨기기 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 '...'으로 표시 */
+  white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
+
   ${({ rank }) => {
     if (rank === 0)
       return "color: #F00; text-align: center; font-size: 40px; font-style: normal; font-weight: bold;";

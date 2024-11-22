@@ -8,8 +8,9 @@ import projectOverviewIcon from "../../assets/navigation/sideNavigation/projecto
 import projectOverviewIconHover from "../../assets/navigation/sideNavigation/projectoverview_h.png";
 import projectMethodIcon from "../../assets/navigation/sideNavigation/projectmethod.png";
 import projectMethodIconHover from "../../assets/navigation/sideNavigation/projectmethod_h.png";
-import reason from "../../assets/common/how.png";
-import how from "../../assets/common/reason.png";
+import reason from "../../assets/common/project_overview.png";
+import how from "../../assets/common/project_method.png";
+import close from "../../assets/common/close.png";
 
 const SideNavigation = () => {
   const location = useLocation();
@@ -72,8 +73,8 @@ const SideNavigation = () => {
       {isModalOpen && (
         <ModalOverlay onClick={closeModal}>
           <ModalContent onClick={(e) => e.stopPropagation()}>
-            <CloseButton onClick={closeModal}>X</CloseButton>
-            <img src={modalImageSrc} alt="Modal Content" />
+            <CloseButton onClick={closeModal}></CloseButton>
+            <Image src={modalImageSrc} alt="Modal Content" />
           </ModalContent>
         </ModalOverlay>
       )}
@@ -109,7 +110,7 @@ const ReFreshButtonImage = styled.img`
   display: flex;
   width: 235px;
   height: 62px;
-  margin-top: 875px;
+  margin-top: 913px;
   margin-bottom: 85px;
 `;
 
@@ -127,13 +128,20 @@ const ButtonImage = styled.img`
   margin-bottom: 75px;
 `;
 
+const Image = styled.img`
+  width: 872px;
+  height: 1345px;
+  cursor: pointer;
+  border: 4px solid #000;
+  border-left: none;
+  margin-top: 46px;
+`;
+
 const ModalOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,20 +149,23 @@ const ModalOverlay = styled.div`
 `;
 
 const ModalContent = styled.div`
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 90%;
-  max-height: 90%;
+  width: 872px;
+  height: 1428px;
+  margin-left: -854px;
   position: relative;
 `;
 
 const CloseButton = styled.button`
   position: absolute;
-  top: 10px;
+  top: 55px;
   right: 10px;
-  background: none;
+  margin-top: 20px;
+  margin-right: 20px;
+
+  width: 44px;
+  height: 44px;
   border: none;
-  font-size: 20px;
+  background: url(${close}) no-repeat center center;
+  background-size: contain;
   cursor: pointer;
 `;

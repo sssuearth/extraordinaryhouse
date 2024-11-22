@@ -83,4 +83,8 @@ const CardContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
+
+  & > img:nth-child(4n) {
+    border-right: none;
+  }
 `;

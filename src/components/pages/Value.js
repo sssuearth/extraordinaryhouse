@@ -10,7 +10,6 @@ import love from "../../assets/5Value/fellinlove.png";
 import dog from "../../assets/5Value/dogwink.gif";
 import dance from "../../assets/5Value/dance.gif";
 import mouse from "../../assets/5Value/mouse.png";
-import leftrainbowHorse from "../../assets/5Value/rainbow horse.gif"; // GIF 파일 import
 
 const Value = () => {
   return (
@@ -23,7 +22,7 @@ const Value = () => {
       <Dog src={dog} alt="dog" />
       <Dance src={dance} alt="dance" />
       <Mouse src={mouse} alt="mouse" />{" "}
-      <LeftRainbowHorse src={leftrainbowHorse} alt="leftrainbowHorse" />
+      <LeftRainbowHorse src={rainbowHorse} alt="rainbowHorse" />
       <LeftTwinkle src={twinkle} alt="twinkle" />
       {/* Firework 컴포넌트 추가 */}
       <ScrollableImageContainer>

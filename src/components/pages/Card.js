@@ -19,9 +19,8 @@ const Card = ({ image, hoverImage, onClick }) => {
 export default Card;
 
 const CardImage = styled.img`
-  width: 511.6px;
-  height: 500px;
-  padding: 10px;
+  width: 529.6px;
+  height: 529.6px;
   border-bottom: 2px dashed black;
   border-right: 2px dashed black;
 `;
