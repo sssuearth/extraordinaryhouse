@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import blackBarGif from "../../assets/common/blackBarImage.gif"; // 검은 바 이미지 추가
+import React from 'react';
+import styled from 'styled-components';
+import blackBarGif from '../../assets/common/blackBarImage.gif'; // 검은 바 이미지 추가
 
 const Layout = ({ children }) => {
   return (
@@ -21,6 +21,9 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera에서 스크롤바 숨기기 */
+  }
 `;
 
 const ContentContainer = styled.div`
