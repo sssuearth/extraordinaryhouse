@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import styled from "styled-components";
-import navImg from "../../assets/navigation/sideNavigation/nav_vertical.png";
-import refreshIcon from "../../assets/navigation/sideNavigation/randing.png";
-import refreshIconHover from "../../assets/navigation/sideNavigation/randing_h.png";
-import projectOverviewIcon from "../../assets/navigation/sideNavigation/projectoverview.png";
-import projectOverviewIconHover from "../../assets/navigation/sideNavigation/projectoverview_h.png";
-import projectMethodIcon from "../../assets/navigation/sideNavigation/projectmethod.png";
-import projectMethodIconHover from "../../assets/navigation/sideNavigation/projectmethod_h.png";
-import reason from "../../assets/common/project_overview.png";
-import how from "../../assets/common/project_method.png";
-import close from "../../assets/common/close.png";
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
+import navImg from '../../assets/navigation/sideNavigation/nav_vertical.png';
+import refreshIcon from '../../assets/navigation/sideNavigation/randing.png';
+import refreshIconHover from '../../assets/navigation/sideNavigation/randing_h.png';
+import projectOverviewIcon from '../../assets/navigation/sideNavigation/projectoverview.png';
+import projectOverviewIconHover from '../../assets/navigation/sideNavigation/projectoverview_h.png';
+import projectMethodIcon from '../../assets/navigation/sideNavigation/projectmethod.png';
+import projectMethodIconHover from '../../assets/navigation/sideNavigation/projectmethod_h.png';
+import reason from '../../assets/common/project_method.png';
+import how from '../../assets/common/project_overview.png';
+import close from '../../assets/common/close.png';
 
 const SideNavigation = () => {
   const location = useLocation();
