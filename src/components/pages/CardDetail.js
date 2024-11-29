@@ -18,6 +18,13 @@ import detailImg4 from "../../assets/ActionDetail/ian.png";
 import detailImg5 from "../../assets/ActionDetail/tissue.png";
 import auctionButtonImg from "../../assets/ActionDetail/auction_button.png";
 import closeIcon from "../../assets/common/close.png"; // 닫기 버튼 아이콘 경로 추가
+import popupImage1 from "../../assets/Bid/nuget.png";
+import popupImage2 from "../../assets/Bid/natali.png";
+import popupImage3 from "../../assets/Bid/cadibi.png";
+import popupImage4 from "../../assets/Bid/ian.png";
+import popupImage5 from "../../assets/Bid/tissue.png";
+import close from "../../assets/common/close.png";
+
 const CardDetail = () => {
   const { cardId } = useParams(); // useParams로 cardId 가져오기
   const [nickname, setNickname] = useState("");
@@ -26,13 +33,37 @@ const CardDetail = () => {
   const addBidMutation = useAddBid(cardId);
   const navigate = useNavigate(); // useNavigate 훅 사용
 
+  const [showPopup, setShowPopup] = useState(false); // 팝업 표시 여부 상태
+  const [popupImage, setPopupImage] = useState(""); // 팝업 이미지 상태
+  const [bestBid, setBestBid] = useState(null);
+  const [winningBidder, setWinningBidder] = useState("");
   // 카드 ID에 따른 이미지 매핑
   const imageMapping = {
-    cardId1: { titleImage: titleImg1, detailImage: detailImg1 },
-    cardId2: { titleImage: titleImg2, detailImage: detailImg2 },
-    cardId3: { titleImage: titleImg3, detailImage: detailImg3 },
-    cardId4: { titleImage: titleImg4, detailImage: detailImg4 },
-    cardId5: { titleImage: titleImg5, detailImage: detailImg5 },
+    cardId1: {
+      titleImage: titleImg1,
+      detailImage: detailImg1,
+      popupImage: popupImage1,
+    },
+    cardId2: {
+      titleImage: titleImg2,
+      detailImage: detailImg2,
+      popupImage: popupImage2,
+    },
+    cardId3: {
+      titleImage: titleImg3,
+      detailImage: detailImg3,
+      popupImage: popupImage3,
+    },
+    cardId4: {
+      titleImage: titleImg4,
+      detailImage: detailImg4,
+      popupImage: popupImage4,
+    },
+    cardId5: {
+      titleImage: titleImg5,
+      detailImage: detailImg5,
+      popupImage: popupImage5,
+    },
   };
 
   // Firestore에서 입찰 데이터 가져오기 함수
@@ -65,33 +96,47 @@ const CardDetail = () => {
     fetchBidData();
   }, [fetchBidData]);
 
-  const handleBidSubmit = (e) => {
+  const handleBidSubmit = async (e) => {
     e.preventDefault();
 
-    // 필드 값 유효성 검사
     if (!nickname || !amount) {
       alert("닉네임과 입찰 금액을 모두 입력해주세요.");
       return;
     }
 
-    // Firestore에 추가할 입찰 데이터 구성
     const bid = {
-      amount: amount, // 금액을 숫자로 변환
+      amount: Number(amount), // 숫자로 변환
       bidder: nickname,
     };
 
     // Firestore에 입찰 데이터 추가
     addBidMutation.mutate(bid, {
-      onSuccess: () => {
+      onSuccess: async () => {
         setNickname("");
         setAmount("");
-        fetchBidData(); // 입찰 등록 후 입찰 데이터 다시 가져오기
+        await fetchBidData(); // 입찰 데이터를 다시 불러옴
+
+        // 입찰 데이터가 성공적으로 업데이트된 뒤 비교
+        const updatedBids = [
+          ...bids.map((b) => Number(b.amount)),
+          Number(amount),
+        ];
+        const maxBid = Math.max(...updatedBids);
+
+        if (Number(amount) === maxBid) {
+          setPopupImage(imageMapping[cardId]?.popupImage || ""); // 팝업 이미지를 설정
+          setShowPopup(true); // 팝업 표시
+        }
       },
       onError: (error) => {
         console.error("입찰 등록 중 오류 발생:", error);
         alert("입찰 등록에 실패했습니다. 다시 시도해주세요.");
       },
     });
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
   };
   const sortedBids = bids.slice().sort((a, b) => b.amount - a.amount);
 
@@ -106,8 +151,51 @@ const CardDetail = () => {
   const handleClose = () => {
     navigate("/Auction"); // '/Auction' 경로로 이동
   };
+  useEffect(() => {
+    if (bids.length > 0) {
+      const maxBid = Math.max(...bids.map((b) => Number(b.amount)));
+      if (Number(amount) === maxBid) {
+        setPopupImage(imageMapping[cardId]?.detailImage || "");
+        setShowPopup(true);
+      }
+    }
+  }, [bids, amount, cardId]);
+
+  useEffect(() => {
+    console.log("Popup 상태:", showPopup);
+    console.log("Popup 이미지:", popupImage);
+  }, [showPopup, popupImage]);
+
+  useEffect(() => {
+    if (bids.length > 0) {
+      const sorted = bids.slice().sort((a, b) => b.amount - a.amount);
+      setPopupImage(imageMapping[cardId]?.popupImage || "");
+      setBestBid(sorted[0]?.amount || 0); // 최고 입찰 금액
+      setWinningBidder(sorted[0]?.bidder || "Unknown"); // 최고 입찰자
+      setShowPopup(true); // 팝업 열기
+    }
+  }, [bids, cardId]);
+
   return (
     <Container>
+      {showPopup && (
+        <PopupOverlay>
+          <PopupContainer>
+            <PopupCloseButton onClick={closePopup} />
+            {popupImage && <PopupImage src={popupImage} alt="Popup" />}
+            <PopupDetails>
+              <PopupTitle>최고 입찰 정보</PopupTitle>
+              <PopupText>
+                <strong>Winning Bidder:</strong> {winningBidder}
+              </PopupText>
+              <PopupText>
+                <strong>Best Bid:</strong>{" "}
+                {new Intl.NumberFormat("ko-KR").format(bestBid)} ₩
+              </PopupText>
+            </PopupDetails>
+          </PopupContainer>
+        </PopupOverlay>
+      )}
       <CloseButton onClick={handleClose} /> {/* 닫기 버튼 추가 */}
       {/* 카드 ID에 맞는 타이틀 이미지와 상세 이미지 렌더링 */}
       {imageMapping[cardId] && (
@@ -182,6 +270,63 @@ const CardDetail = () => {
 };
 
 export default CardDetail;
+const PopupDetails = styled.div`
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+`;
+
+const PopupTitle = styled.h2`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const PopupText = styled.p`
+  font-size: 18px;
+  margin: 5px 0;
+`;
+const PopupCloseButton = styled.button`
+  position: absolute;
+  top: 255px;
+  right: 970px;
+  width: 40px;
+  height: 40px;
+  background: url(${close}) no-repeat center center;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  z-index: 1001; /* 팝업 이미지보다 위에 렌더링 */
+`;
+const PopupOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  border: 4.5px solid #000;
+`;
+
+const PopupContainer = styled.div`
+  width: 700px;
+  height: 1006px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const PopupImage = styled.img`
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+`;
 const CloseButton = styled.button`
   position: absolute;
   margin-top: 62px;
