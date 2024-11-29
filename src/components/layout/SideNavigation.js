@@ -8,8 +8,8 @@ import projectOverviewIcon from "../../assets/navigation/sideNavigation/projecto
 import projectOverviewIconHover from "../../assets/navigation/sideNavigation/projectoverview_h.png";
 import projectMethodIcon from "../../assets/navigation/sideNavigation/projectmethod.png";
 import projectMethodIconHover from "../../assets/navigation/sideNavigation/projectmethod_h.png";
-import reason from "../../assets/common/project_overview.png";
-import how from "../../assets/common/project_method.png";
+import reason from "../../assets/common/project_method.png";
+import how from "../../assets/common/project_overview.png";
 import close from "../../assets/common/close.png";
 
 const SideNavigation = () => {

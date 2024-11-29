@@ -116,16 +116,14 @@ const CardDetail = () => {
         setAmount("");
         await fetchBidData(); // 입찰 데이터를 다시 불러옴
 
-        // 입찰 데이터가 성공적으로 업데이트된 뒤 비교
-        const updatedBids = [
-          ...bids.map((b) => Number(b.amount)),
-          Number(amount),
-        ];
-        const maxBid = Math.max(...updatedBids);
-
-        if (Number(amount) === maxBid) {
+        // 최고 입찰 확인 로직
+        const currentMaxBid = Math.max(...bids.map((b) => Number(b.amount)), 0);
+        if (Number(bid.amount) > currentMaxBid) {
+          // 새로운 최고 입찰자라면 팝업 표시
           setPopupImage(imageMapping[cardId]?.popupImage || ""); // 팝업 이미지를 설정
           setShowPopup(true); // 팝업 표시
+          setBestBid(bid.amount); // 최고 입찰 금액 업데이트
+          setWinningBidder(bid.bidder); // 최고 입찰자 이름 업데이트
         }
       },
       onError: (error) => {
@@ -134,7 +132,6 @@ const CardDetail = () => {
       },
     });
   };
-
   const closePopup = () => {
     setShowPopup(false);
   };
@@ -151,48 +148,26 @@ const CardDetail = () => {
   const handleClose = () => {
     navigate("/Auction"); // '/Auction' 경로로 이동
   };
-  useEffect(() => {
-    if (bids.length > 0) {
-      const maxBid = Math.max(...bids.map((b) => Number(b.amount)));
-      if (Number(amount) === maxBid) {
-        setPopupImage(imageMapping[cardId]?.detailImage || "");
-        setShowPopup(true);
-      }
-    }
-  }, [bids, amount, cardId]);
-
-  useEffect(() => {
-    console.log("Popup 상태:", showPopup);
-    console.log("Popup 이미지:", popupImage);
-  }, [showPopup, popupImage]);
-
-  useEffect(() => {
-    if (bids.length > 0) {
-      const sorted = bids.slice().sort((a, b) => b.amount - a.amount);
-      setPopupImage(imageMapping[cardId]?.popupImage || "");
-      setBestBid(sorted[0]?.amount || 0); // 최고 입찰 금액
-      setWinningBidder(sorted[0]?.bidder || "Unknown"); // 최고 입찰자
-      setShowPopup(true); // 팝업 열기
-    }
-  }, [bids, cardId]);
 
   return (
     <Container>
       {showPopup && (
         <PopupOverlay>
           <PopupContainer>
-            <PopupCloseButton onClick={closePopup} />
-            {popupImage && <PopupImage src={popupImage} alt="Popup" />}
+            <PopupImage src={popupImage} alt="Popup" />
             <PopupDetails>
-              <PopupTitle>최고 입찰 정보</PopupTitle>
               <PopupText>
-                <strong>Winning Bidder:</strong> {winningBidder}
+                <StyleP>Winning Bidder:</StyleP>
+                <StyleP2> {winningBidder}</StyleP2>
               </PopupText>
               <PopupText>
-                <strong>Best Bid:</strong>{" "}
-                {new Intl.NumberFormat("ko-KR").format(bestBid)} ₩
+                <StyleP>Best Bid:</StyleP>
+                <StyleP2>
+                  {new Intl.NumberFormat("ko-KR").format(bestBid)} ₩
+                </StyleP2>
               </PopupText>
             </PopupDetails>
+            <PopupCloseButton onClick={closePopup} />
           </PopupContainer>
         </PopupOverlay>
       )}
@@ -270,33 +245,56 @@ const CardDetail = () => {
 };
 
 export default CardDetail;
-const PopupDetails = styled.div`
-  margin-top: 20px;
-  text-align: center;
-  font-size: 18px;
+
+const StyleP = styled.p`
+  @font-face {
+    font-family: "Pretendard-Medium"; /* 폰트 이름 정의 */
+    src: url("/fonts/Pretendard-Medium.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-weight: 300; /* Bold 폰트 */
+    font-style: normal;
+  }
+  display: flex;
+  font-family: "Pretendard-Medium", sans-serif; /* 폰트 적용 */
+  font-size: 33px; /* 폰트 크기 */
+  font-weight: 300; /* Bold */
+  margin: 0 auto;
+  padding-left: 10px;
 `;
 
-const PopupTitle = styled.h2`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+const StyleP2 = styled.p`
+  @font-face {
+    font-family: "Pretendard-Bold"; /* 폰트 이름 정의 */
+    src: url("/fonts/Pretendard-Bold.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-weight: 700; /* Bold 폰트 */
+    font-style: normal;
+  }
+  font-family: "Pretendard-Bold", sans-serif; /* 폰트 적용 */
+  display: flex;
+  font-size: 33px; /* 폰트 크기 */
+  font-weight: 700; /* Bold */
+  padding-left: 10px;
+  margin: 0 auto;
 `;
 
 const PopupText = styled.p`
-  font-size: 18px;
-  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 22px;
+  height: 31px;
 `;
 const PopupCloseButton = styled.button`
   position: absolute;
-  top: 255px;
-  right: 970px;
+  top: 50px;
+  right: 50px;
   width: 40px;
   height: 40px;
   background: url(${close}) no-repeat center center;
   background-size: cover;
   border: none;
   cursor: pointer;
-  z-index: 1001; /* 팝업 이미지보다 위에 렌더링 */
+  z-index: 1200; /* 팝업 이미지보다 위에 렌더링 */
 `;
 const PopupOverlay = styled.div`
   position: fixed;
@@ -316,10 +314,10 @@ const PopupContainer = styled.div`
   width: 700px;
   height: 1006px;
   background: white;
-  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative; /* 상대 위치 지정 */
 `;
 
 const PopupImage = styled.img`
@@ -327,6 +325,23 @@ const PopupImage = styled.img`
   height: auto;
   border-radius: 8px;
 `;
+
+const PopupDetails = styled.div`
+  position: absolute;
+  width: 830px;
+  height: 207px;
+  top: 805px;
+  left: 10%;
+
+  font-size: 36px;
+  z-index: 10;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+`;
+
 const CloseButton = styled.button`
   position: absolute;
   margin-top: 62px;
@@ -454,7 +469,15 @@ const Input = styled.input`
   height: 80px;
   font-size: 32px; /* 일반 텍스트 크기 */
 
+  @font-face {
+    font-family: "BMDOHYEON"; /* 폰트 이름 정의 */
+    src: url("/fonts/BMDOHYEON_otf.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-weight: 700; /* Bold 폰트 */
+    font-style: normal;
+  }
+
   &::placeholder {
+    font-family: "BMDOHYEON", sans-serif; /* 폰트 적용 */
     color: #bcbcbc;
     font-size: 32px; /* placeholder 글자 크기 */
     font-weight: 400;
@@ -471,7 +494,15 @@ const NameInput = styled.input`
   height: 80px;
   font-size: 32px; /* 일반 텍스트 크기 */
 
+  @font-face {
+    font-family: "BMDOHYEON"; /* 폰트 이름 정의 */
+    src: url("/fonts/BMDOHYEON_otf.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-weight: 700; /* Bold 폰트 */
+    font-style: normal;
+  }
+
   &::placeholder {
+    font-family: "BMDOHYEON", sans-serif; /* 폰트 적용 */
     color: #bcbcbc;
     font-size: 32px; /* placeholder 글자 크기 */
     font-weight: 400;
