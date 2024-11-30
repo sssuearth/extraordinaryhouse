@@ -24,6 +24,8 @@ import popupImage3 from "../../assets/Bid/cadibi.png";
 import popupImage4 from "../../assets/Bid/ian.png";
 import popupImage5 from "../../assets/Bid/tissue.png";
 import close from "../../assets/common/close.png";
+import QRCode from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 
 const CardDetail = () => {
   const { cardId } = useParams(); // useParams로 cardId 가져오기
@@ -37,6 +39,7 @@ const CardDetail = () => {
   const [popupImage, setPopupImage] = useState(""); // 팝업 이미지 상태
   const [bestBid, setBestBid] = useState(null);
   const [winningBidder, setWinningBidder] = useState("");
+
   // 카드 ID에 따른 이미지 매핑
   const imageMapping = {
     cardId1: {
@@ -64,6 +67,14 @@ const CardDetail = () => {
       detailImage: detailImg5,
       popupImage: popupImage5,
     },
+  };
+
+  const qrCodeMapping = {
+    cardId1: `${window.location.origin}/public/QrCode/nuget.png`,
+    cardId2: `https://postimg.cc/4HPfqnrV`,
+    cardId3: `${window.location.origin}/public/QrCode/mic.png`,
+    cardId4: `${window.location.origin}/public/QrCode/ian.png`,
+    cardId5: `${window.location.origin}/public/QrCode/tissue.png`,
   };
 
   // Firestore에서 입찰 데이터 가져오기 함수
@@ -166,7 +177,22 @@ const CardDetail = () => {
                   {new Intl.NumberFormat("ko-KR").format(bestBid)} ₩
                 </StyleP2>
               </PopupText>
+              <PopupText>
+                <StyleP>ISSUED DATE:</StyleP>
+                <StyleP2>2024.12.04</StyleP2>
+              </PopupText>
+              <QRCodeContainer>
+                <QRCodeCanvas
+                  value={qrCodeMapping[cardId] || `https://postimg.cc/4HPfqnrV`}
+                  size={131} // QR 코드 크기
+                  bgColor="#ffffff"
+                  fgColor="#000000"
+                />
+              </QRCodeContainer>
             </PopupDetails>
+
+            {/* QR 코드 추가 */}
+
             <PopupCloseButton onClick={closePopup} />
           </PopupContainer>
         </PopupOverlay>
@@ -245,18 +271,27 @@ const CardDetail = () => {
 };
 
 export default CardDetail;
-
+const QRCodeContainer = styled.div`
+  margin-top: -520px;
+  margin-left: -120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+`;
 const StyleP = styled.p`
   @font-face {
-    font-family: "Pretendard-Medium"; /* 폰트 이름 정의 */
-    src: url("/fonts/Pretendard-Medium.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-family: "Pretendard-Light"; /* 폰트 이름 정의 */
+    src: url("/fonts/Pretendard-Light.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
     font-weight: 300; /* Bold 폰트 */
     font-style: normal;
   }
   display: flex;
-  font-family: "Pretendard-Medium", sans-serif; /* 폰트 적용 */
-  font-size: 33px; /* 폰트 크기 */
-  font-weight: 300; /* Bold */
+  font-family: "Pretendard-Light", sans-serif; /* 폰트 적용 */
+  font-weight: 300;
+  line-height: 92.7%; /* 30.591px */
+  letter-spacing: -0.66px;
   margin: 0 auto;
   padding-left: 10px;
 `;
