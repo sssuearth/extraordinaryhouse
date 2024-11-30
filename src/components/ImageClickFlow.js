@@ -4,6 +4,7 @@ import introImage from "../assets/intro/introImage.png";
 import gifAnimation from "../assets/intro/gifAnimation.gif";
 import enterImage from "../assets/intro/background_title.png";
 import enterButton from "../assets/intro/button_ENTER.png";
+import hoverEnterButton from "../assets/intro/button_ENTER_hover.png";
 
 const ImageClickFlow = ({ onEnter }) => {
   const [isGifPlaying, setIsGifPlaying] = useState(false);
@@ -73,11 +74,14 @@ const StyledImage = styled.img`
 
 const ButtonImage = styled.img`
   position: absolute;
-  /* bottom: 50px; */
   left: 50%;
   margin-top: 620px;
   transform: translateX(-50%);
   width: 350px;
   height: auto;
   cursor: pointer;
+
+  &:hover {
+    content: url(${hoverEnterButton});
+  }
 `;

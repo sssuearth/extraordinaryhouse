@@ -6,8 +6,9 @@ import Sophia_Martinez from '../assets/collection/bidder/Sophia_Martinez.png';
 
 import tissue from '../assets/collection/detail/detail_tissue.png';
 import tissue2 from '../assets/collection/detail/detail_tissue_2.png';
-import bupit from '../assets/collection/detail/detail_tissue.png';
-import bupit2 from '../assets/collection/detail/detail_tissue_2.png';
+
+import bupit from '../assets/collection/detail/detail_bupit.png';
+import bupit2 from '../assets/collection/detail/detail_bupit_2.png';
 import remon from '../assets/collection/detail/detail_tissue.png';
 import remon2 from '../assets/collection/detail/detail_tissue_2.png';
 import shoes from '../assets/collection/detail/detail_tissue.png';
@@ -22,7 +23,7 @@ const collectionDetailData = [
     title: 'LUNCH TICKET WITH WARREN BUFFET',
     subTitle: '주식대가 워렌 버픽 과의 점심 식사권',
     image: bupit,
-    bestCost: '$ 4,122,955,555',
+    bestCost: '$ 122,955,555',
     bidder: Emily_Cooper,
     bidderName: 'Emily_Cooper',
     defaultCost: '$5,300 (2008년)',
