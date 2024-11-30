@@ -174,7 +174,7 @@ const CardDetail = () => {
               <PopupText>
                 <StyleP>Best Bid:</StyleP>
                 <StyleP2>
-                  {new Intl.NumberFormat("ko-KR").format(bestBid)} ₩
+                  ₩{new Intl.NumberFormat("ko-KR").format(bestBid)}
                 </StyleP2>
               </PopupText>
               <PopupText>
@@ -282,13 +282,13 @@ const QRCodeContainer = styled.div`
 `;
 const StyleP = styled.p`
   @font-face {
-    font-family: "Pretendard-Light"; /* 폰트 이름 정의 */
-    src: url("/fonts/Pretendard-Light.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-family: "Pretendard-Medium"; /* 폰트 이름 정의 */
+    src: url("/fonts/Pretendard-Medium.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
     font-weight: 300; /* Bold 폰트 */
     font-style: normal;
   }
   display: flex;
-  font-family: "Pretendard-Light", sans-serif; /* 폰트 적용 */
+  font-family: "Pretendard-Medium", sans-serif; /* 폰트 적용 */
   font-weight: 300;
   line-height: 92.7%; /* 30.591px */
   letter-spacing: -0.66px;
@@ -298,12 +298,14 @@ const StyleP = styled.p`
 
 const StyleP2 = styled.p`
   @font-face {
-    font-family: "Pretendard-Bold"; /* 폰트 이름 정의 */
-    src: url("/fonts/Pretendard-Bold.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-family: "Pretendard-Black"; /* 폰트 이름 정의 */
+    src: url("/fonts/Pretendard-Black.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
     font-weight: 700; /* Bold 폰트 */
     font-style: normal;
   }
-  font-family: "Pretendard-Bold", sans-serif; /* 폰트 적용 */
+  max-width: 355px;
+  overflow: hidden;
+  font-family: "Pretendard-Black", sans-serif; /* 폰트 적용 */
   display: flex;
   font-size: 33px; /* 폰트 크기 */
   font-weight: 700; /* Bold */
@@ -342,7 +344,6 @@ const PopupOverlay = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  border: 4.5px solid #000;
 `;
 
 const PopupContainer = styled.div`
@@ -353,12 +354,12 @@ const PopupContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative; /* 상대 위치 지정 */
+  border: 4px solid #000;
 `;
 
 const PopupImage = styled.img`
   width: 100%;
   height: auto;
-  border-radius: 8px;
 `;
 
 const PopupDetails = styled.div`
