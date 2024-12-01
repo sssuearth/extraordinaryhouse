@@ -421,7 +421,7 @@ const BidderTitle = styled.div`
 `;
 
 const BidderTitle3 = styled.div`
-  width: 700px;
+  width: 1000px;
   height: 41.563px;
   color: #0000ff;
   font-size: 35px;
