@@ -1,44 +1,44 @@
 //AcutionDetail페이지
-import React, { useState, useEffect, useCallback } from "react";
-import { useAddBid } from "../../hooks/useBids";
-import { db } from "../../api/firebase";
-import { useNavigate, useParams } from "react-router-dom";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import styled from "styled-components";
-import backgroundImg from "../../assets/ActionDetail/auction_background.png";
-import titleImg1 from "../../assets/ActionDetail/nuget_title.png";
-import titleImg2 from "../../assets/ActionDetail/natali_title.png";
-import titleImg3 from "../../assets/ActionDetail/cadibi_title.png";
-import titleImg4 from "../../assets/ActionDetail/ian_title.png";
-import titleImg5 from "../../assets/ActionDetail/tissue_title.png";
-import detailImg1 from "../../assets/ActionDetail/nuget.png";
-import detailImg2 from "../../assets/ActionDetail/natali.png";
-import detailImg3 from "../../assets/ActionDetail/cadibi.png";
-import detailImg4 from "../../assets/ActionDetail/ian.png";
-import detailImg5 from "../../assets/ActionDetail/tissue.png";
-import auctionButtonImg from "../../assets/ActionDetail/auction_button.png";
-import closeIcon from "../../assets/common/close.png"; // 닫기 버튼 아이콘 경로 추가
-import popupImage1 from "../../assets/Bid/nuget.png";
-import popupImage2 from "../../assets/Bid/natali.png";
-import popupImage3 from "../../assets/Bid/cadibi.png";
-import popupImage4 from "../../assets/Bid/ian.png";
-import popupImage5 from "../../assets/Bid/tissue.png";
-import close from "../../assets/common/close.png";
-import QRCode from "qrcode.react";
-import { QRCodeCanvas } from "qrcode.react";
+import React, { useState, useEffect, useCallback } from 'react';
+import { useAddBid } from '../../hooks/useBids';
+import { db } from '../../api/firebase';
+import { useNavigate, useParams } from 'react-router-dom';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import styled from 'styled-components';
+import backgroundImg from '../../assets/ActionDetail/auction_background.png';
+import titleImg1 from '../../assets/ActionDetail/nuget_title.png';
+import titleImg2 from '../../assets/ActionDetail/natali_title.png';
+import titleImg3 from '../../assets/ActionDetail/cadibi_title.png';
+import titleImg4 from '../../assets/ActionDetail/ian_title.png';
+import titleImg5 from '../../assets/ActionDetail/tissue_title.png';
+import detailImg1 from '../../assets/ActionDetail/nuget.png';
+import detailImg2 from '../../assets/ActionDetail/natali.png';
+import detailImg3 from '../../assets/ActionDetail/cadibi.png';
+import detailImg4 from '../../assets/ActionDetail/ian.png';
+import detailImg5 from '../../assets/ActionDetail/tissue.png';
+import auctionButtonImg from '../../assets/ActionDetail/auction_button.png';
+import closeIcon from '../../assets/common/close.png'; // 닫기 버튼 아이콘 경로 추가
+import popupImage1 from '../../assets/Bid/nuget.png';
+import popupImage2 from '../../assets/Bid/natali.png';
+import popupImage3 from '../../assets/Bid/cadibi.png';
+import popupImage4 from '../../assets/Bid/ian.png';
+import popupImage5 from '../../assets/Bid/tissue.png';
+import close from '../../assets/common/close.png';
+import QRCode from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
 
 const CardDetail = () => {
   const { cardId } = useParams(); // useParams로 cardId 가져오기
-  const [nickname, setNickname] = useState("");
-  const [amount, setAmount] = useState("");
+  const [nickname, setNickname] = useState('');
+  const [amount, setAmount] = useState('');
   const [bids, setBids] = useState([]); // 입찰 데이터 상태
   const addBidMutation = useAddBid(cardId);
   const navigate = useNavigate(); // useNavigate 훅 사용
 
   const [showPopup, setShowPopup] = useState(false); // 팝업 표시 여부 상태
-  const [popupImage, setPopupImage] = useState(""); // 팝업 이미지 상태
+  const [popupImage, setPopupImage] = useState(''); // 팝업 이미지 상태
   const [bestBid, setBestBid] = useState(null);
-  const [winningBidder, setWinningBidder] = useState("");
+  const [winningBidder, setWinningBidder] = useState('');
 
   // 카드 ID에 따른 이미지 매핑
   const imageMapping = {
@@ -80,25 +80,25 @@ const CardDetail = () => {
   // Firestore에서 입찰 데이터 가져오기 함수
   const fetchBidData = useCallback(async () => {
     if (!cardId) {
-      console.error("유효하지 않은 cardId:", cardId);
+      console.error('유효하지 않은 cardId:', cardId);
       return;
     }
 
     try {
-      const docRef = doc(db, "cards", cardId);
+      const docRef = doc(db, 'cards', cardId);
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-        console.log("입찰 데이터:", data);
+        console.log('입찰 데이터:', data);
         setBids(data.bids || []); // 입찰 데이터 설정
       } else {
-        console.log("입찰 데이터가 없습니다. 새 문서를 생성합니다.");
+        console.log('입찰 데이터가 없습니다. 새 문서를 생성합니다.');
         await setDoc(docRef, { bids: [] });
         setBids([]); // 빈 입찰 데이터로 초기화
       }
     } catch (error) {
-      console.error("데이터 가져오기 오류:", error);
+      console.error('데이터 가져오기 오류:', error);
     }
   }, [cardId]);
 
@@ -111,7 +111,7 @@ const CardDetail = () => {
     e.preventDefault();
 
     if (!nickname || !amount) {
-      alert("닉네임과 입찰 금액을 모두 입력해주세요.");
+      alert('닉네임과 입찰 금액(숫자)을 모두 입력해주세요.');
       return;
     }
 
@@ -123,23 +123,23 @@ const CardDetail = () => {
     // Firestore에 입찰 데이터 추가
     addBidMutation.mutate(bid, {
       onSuccess: async () => {
-        setNickname("");
-        setAmount("");
+        setNickname('');
+        setAmount('');
         await fetchBidData(); // 입찰 데이터를 다시 불러옴
 
         // 최고 입찰 확인 로직
         const currentMaxBid = Math.max(...bids.map((b) => Number(b.amount)), 0);
         if (Number(bid.amount) > currentMaxBid) {
           // 새로운 최고 입찰자라면 팝업 표시
-          setPopupImage(imageMapping[cardId]?.popupImage || ""); // 팝업 이미지를 설정
+          setPopupImage(imageMapping[cardId]?.popupImage || ''); // 팝업 이미지를 설정
           setShowPopup(true); // 팝업 표시
           setBestBid(bid.amount); // 최고 입찰 금액 업데이트
           setWinningBidder(bid.bidder); // 최고 입찰자 이름 업데이트
         }
       },
       onError: (error) => {
-        console.error("입찰 등록 중 오류 발생:", error);
-        alert("입찰 등록에 실패했습니다. 다시 시도해주세요.");
+        console.error('입찰 등록 중 오류 발생:', error);
+        alert('입찰 등록에 실패했습니다. 다시 시도해주세요.');
       },
     });
   };
@@ -151,13 +151,13 @@ const CardDetail = () => {
   // 원화 포맷팅 함수 추가
   const formatKRW = (amount) => {
     return (
-      new Intl.NumberFormat("ko-KR", {
+      new Intl.NumberFormat('ko-KR', {
         maximumFractionDigits: 0,
-      }).format(amount) + " ₩"
+      }).format(amount) + ' ₩'
     ); // '원' 으로 변경하거나 'won' 또는 '₩' 사용 가능
   };
   const handleClose = () => {
-    navigate("/Auction"); // '/Auction' 경로로 이동
+    navigate('/Auction'); // '/Auction' 경로로 이동
   };
 
   return (
@@ -174,7 +174,7 @@ const CardDetail = () => {
               <PopupText>
                 <StyleP>Best Bid:</StyleP>
                 <StyleP2>
-                  ₩{new Intl.NumberFormat("ko-KR").format(bestBid)}
+                  ₩{new Intl.NumberFormat('ko-KR').format(bestBid)}
                 </StyleP2>
               </PopupText>
               <PopupText>
@@ -224,7 +224,7 @@ const CardDetail = () => {
                 type="number"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="입찰 금액"
+                placeholder="금액(숫자 입력)"
                 required
               />
             </BidContainer>
@@ -233,11 +233,14 @@ const CardDetail = () => {
             src={auctionButtonImg}
             alt="입찰하기"
             onClick={handleBidSubmit}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: 'pointer' }}
             disabled={addBidMutation.isLoading}
           />
         </Form>
         <BidderTitle>입찰자 리스트</BidderTitle>
+        <BidderTitle3>
+          ☆★ 최고금액 입찰시, 일회용 개런티가 발급됩니다 ★☆
+        </BidderTitle3>
         <ListContain>
           <WhiteBackground>
             <HeaderRow>
@@ -254,7 +257,7 @@ const CardDetail = () => {
                     <BidCard key={index} rank={index}>
                       <CardContent>
                         <BidderName rank={index}>
-                          {bid?.bidder || "알 수 없음"}
+                          {bid?.bidder || '알 수 없음'}
                         </BidderName>
                         <BidAmount rank={index}>{formattedAmount}</BidAmount>
                       </CardContent>
@@ -282,13 +285,13 @@ const QRCodeContainer = styled.div`
 `;
 const StyleP = styled.p`
   @font-face {
-    font-family: "Pretendard-Medium"; /* 폰트 이름 정의 */
-    src: url("/fonts/Pretendard-Medium.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-family: 'Pretendard-Medium'; /* 폰트 이름 정의 */
+    src: url('/fonts/Pretendard-Medium.otf') format('opentype'); /* OTF 파일 경로 및 형식 */
     font-weight: 300; /* Bold 폰트 */
     font-style: normal;
   }
   display: flex;
-  font-family: "Pretendard-Medium", sans-serif; /* 폰트 적용 */
+  font-family: 'Pretendard-Medium', sans-serif; /* 폰트 적용 */
   font-weight: 300;
   line-height: 92.7%; /* 30.591px */
   letter-spacing: -0.66px;
@@ -298,14 +301,14 @@ const StyleP = styled.p`
 
 const StyleP2 = styled.p`
   @font-face {
-    font-family: "Pretendard-Black"; /* 폰트 이름 정의 */
-    src: url("/fonts/Pretendard-Black.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-family: 'Pretendard-Black'; /* 폰트 이름 정의 */
+    src: url('/fonts/Pretendard-Black.otf') format('opentype'); /* OTF 파일 경로 및 형식 */
     font-weight: 700; /* Bold 폰트 */
     font-style: normal;
   }
   max-width: 355px;
   overflow: hidden;
-  font-family: "Pretendard-Black", sans-serif; /* 폰트 적용 */
+  font-family: 'Pretendard-Black', sans-serif; /* 폰트 적용 */
   display: flex;
   font-size: 33px; /* 폰트 크기 */
   font-weight: 700; /* Bold */
@@ -414,6 +417,19 @@ const BidderTitle = styled.div`
   line-height: 92.7%; /* 38.934px */
   letter-spacing: -2.52px;
   text-transform: uppercase;
+  padding-bottom: 25px;
+`;
+
+const BidderTitle3 = styled.div`
+  width: 700px;
+  height: 41.563px;
+  color: #0000ff;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 92.7%; /* 38.934px */
+  letter-spacing: -2.52px;
+  text-transform: uppercase;
   padding-bottom: 37px;
 `;
 
@@ -440,7 +456,7 @@ const BidContainer = styled.div`
 const BidsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  padding-bottom: 37px;
+  padding-bottom: 25px;
   width: 1071px;
   justify-content: space-between;
 `;
@@ -506,14 +522,14 @@ const Input = styled.input`
   font-size: 32px; /* 일반 텍스트 크기 */
 
   @font-face {
-    font-family: "BMDOHYEON"; /* 폰트 이름 정의 */
-    src: url("/fonts/BMDOHYEON_otf.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-family: 'BMDOHYEON'; /* 폰트 이름 정의 */
+    src: url('/fonts/BMDOHYEON_otf.otf') format('opentype'); /* OTF 파일 경로 및 형식 */
     font-weight: 700; /* Bold 폰트 */
     font-style: normal;
   }
 
   &::placeholder {
-    font-family: "BMDOHYEON", sans-serif; /* 폰트 적용 */
+    font-family: 'BMDOHYEON', sans-serif; /* 폰트 적용 */
     color: #bcbcbc;
     font-size: 32px; /* placeholder 글자 크기 */
     font-weight: 400;
@@ -531,14 +547,14 @@ const NameInput = styled.input`
   font-size: 32px; /* 일반 텍스트 크기 */
 
   @font-face {
-    font-family: "BMDOHYEON"; /* 폰트 이름 정의 */
-    src: url("/fonts/BMDOHYEON_otf.otf") format("opentype"); /* OTF 파일 경로 및 형식 */
+    font-family: 'BMDOHYEON'; /* 폰트 이름 정의 */
+    src: url('/fonts/BMDOHYEON_otf.otf') format('opentype'); /* OTF 파일 경로 및 형식 */
     font-weight: 700; /* Bold 폰트 */
     font-style: normal;
   }
 
   &::placeholder {
-    font-family: "BMDOHYEON", sans-serif; /* 폰트 적용 */
+    font-family: 'BMDOHYEON', sans-serif; /* 폰트 적용 */
     color: #bcbcbc;
     font-size: 32px; /* placeholder 글자 크기 */
     font-weight: 400;
@@ -548,13 +564,13 @@ const NameInput = styled.input`
 
 const ButtonImg = styled.img`
   width: 1170px;
-  height: 135px;
+  height: auto;
   color: white;
   border: none;
   margin-left: -20px;
   border-radius: 4px;
   cursor: pointer;
-  margin-bottom: 55px;
+  margin-bottom: 60px;
 
   &:disabled {
     background-color: #ccc;
@@ -608,10 +624,10 @@ const BidderName = styled.div`
   font-size: 32px;
   ${({ rank }) => {
     if (rank === 0)
-      return "color: #F00; text-align: center; font-size: 40px; font-style: normal; font-weight: bold;";
-    if (rank === 1) return "font-size: 37px; color: #3B82F6;";
-    if (rank === 2) return "font-size: 34px; color: #22C55E;";
-    return "font-size: 32px; color: #000000;";
+      return 'color: #F00; text-align: center; font-size: 40px; font-style: normal; font-weight: bold;';
+    if (rank === 1) return 'font-size: 37px; color: #3B82F6;';
+    if (rank === 2) return 'font-size: 34px; color: #22C55E;';
+    return 'font-size: 32px; color: #000000;';
   }}
 `;
 
@@ -626,10 +642,10 @@ const BidAmount = styled.div`
 
   ${({ rank }) => {
     if (rank === 0)
-      return "color: #F00; text-align: center; font-size: 40px; font-style: normal; font-weight: bold;";
-    if (rank === 1) return "font-size: 37px; color: #3B82F6;";
-    if (rank === 2) return "font-size: 34px; color: #22C55E;";
-    return "font-size: 32px; color: #000000;";
+      return 'color: #F00; text-align: center; font-size: 40px; font-style: normal; font-weight: bold;';
+    if (rank === 1) return 'font-size: 37px; color: #3B82F6;';
+    if (rank === 2) return 'font-size: 34px; color: #22C55E;';
+    return 'font-size: 32px; color: #000000;';
   }}
 `;
 
