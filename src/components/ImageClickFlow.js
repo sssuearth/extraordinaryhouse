@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import introImage from "../assets/intro/introImage.png";
-import gifAnimation from "../assets/intro/gifAnimation.gif";
-import enterImage from "../assets/intro/background_title.png";
-import enterButton from "../assets/intro/button_ENTER.png";
-import hoverEnterButton from "../assets/intro/button_ENTER_hover.png";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import introImage from '../assets/intro/introImage2.png';
+import gifAnimation from '../assets/intro/gifAnimation.gif';
+// import enterImage from "../assets/intro/background_title.png";
+import enterImage from '../assets/intro/randingfinal.png';
+import enterButton from '../assets/intro/button_ENTER.png';
+import hoverEnterButton from '../assets/intro/button_ENTER_hover.png';
 
 const ImageClickFlow = ({ onEnter }) => {
   const [isGifPlaying, setIsGifPlaying] = useState(false);
@@ -20,16 +21,16 @@ const ImageClickFlow = ({ onEnter }) => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === "Enter" && showEnterScreen) {
+      if (event.key === 'Enter' && showEnterScreen) {
         onEnter(); // Enter 키를 눌렀을 때 메인 화면으로 이동
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown);
 
     // Clean up 이벤트 리스너
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [showEnterScreen, onEnter]);
 
@@ -59,7 +60,7 @@ const Container = styled.div`
   width: 100vw;
   height: calc(100vh - 104px);
   background-image: ${({ $isGifPlaying }) =>
-    $isGifPlaying ? `url(${enterImage})` : "none"};
+    $isGifPlaying ? `url(${enterImage})` : 'none'};
   background-size: 100% calc(100vh - 104px);
   background-position: center;
   background-repeat: no-repeat;
@@ -75,7 +76,7 @@ const StyledImage = styled.img`
 const ButtonImage = styled.img`
   position: absolute;
   left: 50%;
-  margin-top: 620px;
+  margin-top: 690px;
   transform: translateX(-50%);
   width: 350px;
   height: auto;
