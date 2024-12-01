@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import introImage from '../assets/intro/introImage2.png';
 import gifAnimation from '../assets/intro/gifAnimation.gif';
-// import enterImage from "../assets/intro/background_title.png";
-import enterImage from '../assets/intro/randingfinal.png';
+import enterImage from '../assets/intro/background_title2.png';
 import enterButton from '../assets/intro/button_ENTER.png';
 import hoverEnterButton from '../assets/intro/button_ENTER_hover.png';
 
