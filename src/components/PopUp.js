@@ -126,7 +126,7 @@ const SubTitle = styled.p`
   font-size: 34px;
   font-style: normal;
   font-weight: 300; /* Light 폰트 스타일 */
-  padding-bottom: 35px;
+  //padding-bottom: 35px;
   padding-left: 52px;
   margin-top: 21px;
   line-height: 92.7%;
@@ -143,9 +143,9 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  padding-bottom: 31px;
-  width: 700px;
-  height: 631px;
+  padding-bottom: 35px;
+  width: auto;
+  height: 650px;
   margin: 0 auto;
 `;
 
@@ -330,9 +330,9 @@ const Description = styled.p`
 `;
 
 const Image2 = styled.img`
-  padding-bottom: 31px;
+  padding-bottom: 80px;
   width: 486px;
-  height: 298px;
+  height: auto;
   margin: 0 auto;
   padding-left: 142px;
 `;

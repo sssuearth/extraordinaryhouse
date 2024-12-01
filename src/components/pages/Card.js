@@ -1,6 +1,6 @@
 // src/components/Card.js
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const Card = ({ image, hoverImage, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
