@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import navImg from '../../assets/navigation/sideNavigation/nav_vertical.png';
-import refreshIcon from '../../assets/navigation/sideNavigation/randing.png';
+import navImg from '../../assets/navigation/sideNavigation/nav_vertical34.png';
+import refreshIcon from '../../assets/navigation/sideNavigation/randing2.png';
 import refreshIconHover from '../../assets/navigation/sideNavigation/randing_h.png';
 import projectOverviewIcon from '../../assets/navigation/sideNavigation/projectoverview.png';
 import projectOverviewIconHover from '../../assets/navigation/sideNavigation/projectoverview_h.png';
@@ -108,22 +108,22 @@ const ButtonContainer = styled.div`
 
 const ReFreshButtonImage = styled.img`
   display: flex;
-  width: 235px;
-  height: 62px;
-  margin-top: 913px;
-  margin-bottom: 85px;
+  width: 270px;
+  height: auto;
+  margin-top: 920px;
+  margin-bottom: 50px;
 `;
 
 const PoButtonImage = styled.img`
-  width: 277px;
-  height: 93px;
+  width: 290px;
+  height: auto;
   margin-bottom: 25px;
   cursor: pointer;
 `;
 
 const ButtonImage = styled.img`
-  width: 277px;
-  height: 93px;
+  width: 290px;
+  height: auto;
   cursor: pointer;
   margin-bottom: 75px;
 `;
