@@ -70,11 +70,11 @@ const CardDetail = () => {
   };
 
   const qrCodeMapping = {
-    cardId1: `${window.location.origin}/public/QrCode/nuget.png`,
-    cardId2: `https://postimg.cc/4HPfqnrV`,
-    cardId3: `${window.location.origin}/public/QrCode/mic.png`,
-    cardId4: `${window.location.origin}/public/QrCode/ian.png`,
-    cardId5: `${window.location.origin}/public/QrCode/tissue.png`,
+    cardId1: `https://postimg.cc/8f4hHzyQ`,
+    cardId2: `https://postimg.cc/XXbmQ12Q`,
+    cardId3: `https://postimg.cc/mtWqpX8m`,
+    cardId4: `https://postimg.cc/jntHP744`,
+    cardId5: `https://postimg.cc/jC4996mK`,
   };
 
   // Firestore에서 입찰 데이터 가져오기 함수
