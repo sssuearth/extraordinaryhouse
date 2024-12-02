@@ -19,7 +19,7 @@ const Popup = ({ card, onClose }) => {
             </ImageWrapper>
             <BildDiv>
               <BestCost>{card.bestCost}</BestCost>
-              <StyleP>(최고입찰가)</StyleP>
+              {/* <StyleP>(최고입찰가)</StyleP> */}
             </BildDiv>
 
             <Details>
@@ -143,7 +143,7 @@ const ImageWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  padding-bottom: 35px;
+  padding-bottom: 19px;
   width: auto;
   height: 650px;
   margin: 0 auto;
@@ -222,7 +222,7 @@ const BestCost = styled.p`
   color: #000;
   font-family: 'Helvetica-Condensed', sans-serif; /* 폰트 적용 */
   text-shadow: 0px 0px 19.8px #fffb00;
-  font-size: 70px;
+  font-size: 90px;
   font-style: normal;
   font-weight: 700;
   line-height: 92.7%; /* 68.598px */

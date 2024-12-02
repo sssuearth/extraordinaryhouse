@@ -117,7 +117,7 @@ const cardData = [
   { id: 32, image: pants, hoverImage: pants_h },
   { id: 33, image: underwear, hoverImage: underwear_h },
   { id: 34, image: domain, hoverImage: domain_h },
-  { id: 34, image: doritos, hoverImage: doritos_h },
+  { id: 35, image: doritos, hoverImage: doritos_h },
   { id: 36, image: test, hoverImage: test_h },
   // { id: 37, image: not1, hoverImage: not1_h },
   // { id: 38, image: not2, hoverImage: not2_h },
