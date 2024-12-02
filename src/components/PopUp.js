@@ -33,10 +33,10 @@ const Popup = ({ card, onClose }) => {
                 <Value>{card.defaultCost}</Value>
               </DetailItem>
               <DetailItem>
-                <Label>가격 변동</Label>
-                <RedValue>{card.changeCost}</RedValue>
+                {/* <Label>가격 변동</Label> */}
+                {/* <RedValue>{card.changeCost}</RedValue> */}
               </DetailItem>{' '}
-              <DetailItem></DetailItem>
+              {/* <DetailItem></DetailItem> */}
               <HistoryBox>
                 <Label>히스토리</Label>
                 <Description>{card.description}</Description>
@@ -273,9 +273,9 @@ const Value = styled.span`
   padding-right: 12px;
   font-size: 18px;
   font-weight: bold;
-  color: #333;
+  color: red;
   padding-left: 36px;
-  color: #000;
+  color: red;
   text-align: right;
   font-size: 41px;
   font-family: 'Helvetica-Condensed', sans-serif; /* 폰트 적용 */
