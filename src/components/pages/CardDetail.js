@@ -157,7 +157,7 @@ const CardDetail = () => {
     ); // '원' 으로 변경하거나 'won' 또는 '₩' 사용 가능
   };
   const handleClose = () => {
-    navigate('/Auction'); // '/Auction' 경로로 이동
+    navigate('/auction'); // '/Auction' 경로로 이동
   };
 
   return (
@@ -290,6 +290,7 @@ const StyleP = styled.p`
     font-weight: 300; /* Bold 폰트 */
     font-style: normal;
   }
+  color: white;
   display: flex;
   font-family: 'Pretendard-Medium', sans-serif; /* 폰트 적용 */
   font-weight: 300;
@@ -306,6 +307,7 @@ const StyleP2 = styled.p`
     font-weight: 700; /* Bold 폰트 */
     font-style: normal;
   }
+  color: white;
   max-width: 355px;
   overflow: hidden;
   font-family: 'Pretendard-Black', sans-serif; /* 폰트 적용 */
