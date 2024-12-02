@@ -656,4 +656,5 @@ const EmptyMessage = styled.div`
   color: #6b7280;
   text-align: center;
   padding: 24px;
+  padding-bottom: 40px;
 `;
