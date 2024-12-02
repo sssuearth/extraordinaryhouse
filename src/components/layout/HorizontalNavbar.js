@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 // 버튼에 사용할 이미지 파일 import
-import aboutIcon from "../../assets/navigation/horizontalNavigation/about_1.png";
-import aboutIconHover from "../../assets/navigation/horizontalNavigation/about_h.png";
-import aboutIconActive from "../../assets/navigation/horizontalNavigation/about_2.png";
-import collectionIcon from "../../assets/navigation/horizontalNavigation/collection_1.png";
-import collectionIconHover from "../../assets/navigation/horizontalNavigation/collection_h.png";
-import collectionIconActive from "../../assets/navigation/horizontalNavigation/collection_2.png";
-import auctionIcon from "../../assets/navigation/horizontalNavigation/auction_1.png";
-import auctionIconHover from "../../assets/navigation/horizontalNavigation/auction_h.png";
-import auctionIconActive from "../../assets/navigation/horizontalNavigation/auction_2.png";
-import valueIcon from "../../assets/navigation/horizontalNavigation/5value_1.png";
-import valueIconHover from "../../assets/navigation/horizontalNavigation/5value_h.png";
-import valueIconActive from "../../assets/navigation/horizontalNavigation/5value_2.png";
-import flameIcon from "../../assets/navigation/horizontalNavigation/5fame_1.png";
-import flameHover from "../../assets/navigation/horizontalNavigation/5fame_h.png";
-import flameActive from "../../assets/navigation/horizontalNavigation/5fame_2.png";
-import manImage from "../../assets/navigation/horizontalNavigation/pr.png";
-import square_background from "../../assets/navigation/horizontalNavigation/square_background.png";
+import aboutIcon from '../../assets/navigation/horizontalNavigation/about_1.png';
+import aboutIconHover from '../../assets/navigation/horizontalNavigation/about_h.png';
+import aboutIconActive from '../../assets/navigation/horizontalNavigation/about_2.png';
+import collectionIcon from '../../assets/navigation/horizontalNavigation/collection_1.png';
+import collectionIconHover from '../../assets/navigation/horizontalNavigation/collection_h.png';
+import collectionIconActive from '../../assets/navigation/horizontalNavigation/collection_2.png';
+import auctionIcon from '../../assets/navigation/horizontalNavigation/auction_1.png';
+import auctionIconHover from '../../assets/navigation/horizontalNavigation/auction_h.png';
+import auctionIconActive from '../../assets/navigation/horizontalNavigation/auction_2.png';
+import valueIcon from '../../assets/navigation/horizontalNavigation/5value_1.png';
+import valueIconHover from '../../assets/navigation/horizontalNavigation/5value_h.png';
+import valueIconActive from '../../assets/navigation/horizontalNavigation/5value_2.png';
+import flameIcon from '../../assets/navigation/horizontalNavigation/5fame_1.png';
+import flameHover from '../../assets/navigation/horizontalNavigation/5fame_h.png';
+import flameActive from '../../assets/navigation/horizontalNavigation/5fame_2.png';
+import manImage from '../../assets/navigation/horizontalNavigation/pr.png';
+import square_background from '../../assets/navigation/horizontalNavigation/square_background.png';
 
 const HorizontalNavbar = () => {
   const location = useLocation();
@@ -37,40 +37,40 @@ const HorizontalNavbar = () => {
     <NavContainer>
       <Container>
         <AboutButtonImage
-          src={isActive("/about") ? aboutIconActive : aboutSrc}
+          src={isActive('/about') ? aboutIconActive : aboutSrc}
           alt="About"
           onMouseEnter={() => setAboutSrc(aboutIconHover)}
           onMouseLeave={() => setAboutSrc(aboutIcon)}
-          onClick={() => navigate("/about")}
+          onClick={() => navigate('/about')}
         />
         <CollectionButtonImage
-          src={isActive("/collection") ? collectionIconActive : collectionSrc}
+          src={isActive('/collection') ? collectionIconActive : collectionSrc}
           alt="Collection"
           onMouseEnter={() => setCollectionSrc(collectionIconHover)}
           onMouseLeave={() => setCollectionSrc(collectionIcon)}
-          onClick={() => navigate("/collection")}
+          onClick={() => navigate('/collection')}
         />
         <AuctionButtonImage
-          src={isActive("/auction") ? auctionIconActive : auctionSrc}
+          src={isActive('/auction') ? auctionIconActive : auctionSrc}
           alt="Join an Auction"
           onMouseEnter={() => setAuctionSrc(auctionIconHover)}
           onMouseLeave={() => setAuctionSrc(auctionIcon)}
-          onClick={() => navigate("/auction")}
+          onClick={() => navigate('/auction')}
         />
       </Container>
       <ValueButtonImage
-        src={isActive("/value") ? valueIconActive : valueSrc}
+        src={isActive('/value') ? valueIconActive : valueSrc}
         alt="Value"
         onMouseEnter={() => setValueSrc(valueIconHover)}
         onMouseLeave={() => setValueSrc(valueIcon)}
-        onClick={() => navigate("/value")}
+        onClick={() => navigate('/value')}
       />
       <FlameButtonImage
-        src={isActive("/fame") ? flameActive : flameSrc}
+        src={isActive('/fame') ? flameActive : flameSrc}
         alt="Fame"
         onMouseEnter={() => setFlameSrc(flameHover)}
         onMouseLeave={() => setFlameSrc(flameIcon)}
-        onClick={() => navigate("/fame")}
+        onClick={() => navigate('/fame')}
       />
       <ManImage src={manImage} alt="Man" />
     </NavContainer>
@@ -113,7 +113,7 @@ const AuctionButtonImage = styled.img`
   cursor: pointer;
   margin-left: 24px; /* 24px의 간격을 두어 오른쪽 라인이 밀려나도록 설정 */
   padding-left: 0; /* padding-left를 제거하여 여백 조정 */
-  padding-right: 40px;
+  padding-right: 32px;
 `;
 
 const Container = styled.div`
