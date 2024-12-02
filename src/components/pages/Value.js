@@ -1,15 +1,15 @@
-import React from "react";
-import styled from "styled-components";
-import backgroundImg from "../../assets/5Value/5p_background.png";
-import valueImage from "../../assets/5Value/5p_script.png"; // 위에 추가할 이미지 파일 import
-import rainbowHorse from "../../assets/5Value/rainbow horse.gif"; // GIF 파일 import
-import twinkle from "../../assets/5Value/twinkle.gif";
-import fine from "../../assets/5Value/fine.gif";
-import nacho from "../../assets/5Value/nacho.gif";
-import love from "../../assets/5Value/fellinlove.png";
-import dog from "../../assets/5Value/dogwink.gif";
-import dance from "../../assets/5Value/dance.gif";
-import mouse from "../../assets/5Value/mouse.png";
+import React from 'react';
+import styled from 'styled-components';
+import backgroundImg from '../../assets/5Value/5p_background.png';
+import valueImage from '../../assets/5Value/5p_script.png'; // 위에 추가할 이미지 파일 import
+import rainbowHorse from '../../assets/5Value/rainbow horse.gif'; // GIF 파일 import
+import twinkle from '../../assets/5Value/twinkle.gif';
+import fine from '../../assets/5Value/fine.gif';
+import nacho from '../../assets/5Value/nacho.gif';
+import love from '../../assets/5Value/fellinlove.png';
+import dog from '../../assets/5Value/dogwink.gif';
+import dance from '../../assets/5Value/dance.gif';
+import mouse from '../../assets/5Value/mouse.png';
 
 const Value = () => {
   return (
@@ -21,7 +21,7 @@ const Value = () => {
       <Love src={love} alt="love" />
       <Dog src={dog} alt="dog" />
       <Dance src={dance} alt="dance" />
-      <Mouse src={mouse} alt="mouse" />{" "}
+      <Mouse src={mouse} alt="mouse" />{' '}
       <LeftRainbowHorse src={rainbowHorse} alt="rainbowHorse" />
       <LeftTwinkle src={twinkle} alt="twinkle" />
       {/* Firework 컴포넌트 추가 */}
@@ -55,7 +55,7 @@ const LeftRainbowHorse = styled.img`
   height: 383px;
   position: absolute; /* 원하는 위치로 배치 */
   top: 475px; /* 컨테이너의 위쪽에서 50px 떨어짐 */
-  right: 1813px; /* 컨테이너의 오른쪽에서 50px 떨어짐 */
+  right: 1770px; /* 컨테이너의 오른쪽에서 50px 떨어짐 */
   z-index: 10; /* 다른 요소 위에 표시되도록 z-index 설정 */
 `;
 const LeftTwinkle = styled.img`
@@ -83,19 +83,19 @@ const Nacho = styled.img`
   z-index: 10;
 `;
 const Love = styled.img`
-  width: 551px;
-  height: 252px;
+  width: 500px;
+  height: auto;
   position: absolute;
-  top: 167px;
+  top: 207px;
   right: 75px;
   z-index: 10;
 `;
 const Dog = styled.img`
-  width: 208px;
+  width: 230px;
   height: 217px;
   position: absolute;
   top: 1057px;
-  right: 1813px;
+  right: 1863px;
   z-index: 10;
 `;
 const Dance = styled.img`
