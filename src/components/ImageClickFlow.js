@@ -75,7 +75,7 @@ const StyledImage = styled.img`
 const ButtonImage = styled.img`
   position: absolute;
   left: 50%;
-  margin-top: 420px;
+  margin-top: 690px;
   transform: translateX(-50%);
   width: 350px;
   height: auto;
