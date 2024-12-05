@@ -1,18 +1,18 @@
 // src/components/pages/Auction.js
-import React from "react";
-import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import backgroundImg from "../../assets/Action/Join_an_Auction_background.png";
-import cardImg1 from "../../assets/Action/nugget.png";
-import cardImg2 from "../../assets/Action/virgin.png";
-import cardImg3 from "../../assets/Action/mic.png";
-import cardImg4 from "../../assets/Action/life.png";
-import cardImg5 from "../../assets/Action/tissue.png";
-import hoverCard1 from "../../assets/Action/nugget_h.png";
-import hoverCard2 from "../../assets/Action/virgin_h.png";
-import hoverCard3 from "../../assets/Action/mic_h.png";
-import hoverCard4 from "../../assets/Action/life_h.png";
-import hoverCard5 from "../../assets/Action/tissue_h.png";
+import React from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import backgroundImg from '../../assets/Action/Join_an_Auction_background.png';
+import cardImg1 from '../../assets/Action/nugget.png';
+import cardImg2 from '../../assets/Action/virgin.png';
+import cardImg3 from '../../assets/Action/mic.png';
+import cardImg4 from '../../assets/Action/life.png';
+import cardImg5 from '../../assets/Action/tissue.png';
+import hoverCard1 from '../../assets/Action/nugget_h.png';
+import hoverCard2 from '../../assets/Action/virgin_h.png';
+import hoverCard3 from '../../assets/Action/mic_h.png';
+import hoverCard4 from '../../assets/Action/life_h.png';
+import hoverCard5 from '../../assets/Action/tissue_h.png';
 
 const Auction = () => {
   const navigate = useNavigate();
@@ -30,31 +30,31 @@ const Auction = () => {
             src={cardImg1}
             hoverSrc={hoverCard1}
             alt="Card 1"
-            onClick={() => handleCardClick("cardId1")}
+            onClick={() => handleCardClick('cardId1')}
           />
           <Card
             src={cardImg2}
             hoverSrc={hoverCard2}
             alt="Card 2"
-            onClick={() => handleCardClick("cardId2")}
+            onClick={() => handleCardClick('cardId2')}
           />
           <Card
             src={cardImg3}
             hoverSrc={hoverCard3}
             alt="Card 3"
-            onClick={() => handleCardClick("cardId3")}
+            onClick={() => handleCardClick('cardId3')}
           />
           <Card
             src={cardImg4}
             hoverSrc={hoverCard4}
             alt="Card 4"
-            onClick={() => handleCardClick("cardId4")}
+            onClick={() => handleCardClick('cardId4')}
           />
           <Card
             src={cardImg5}
             hoverSrc={hoverCard5}
             alt="Card 5"
-            onClick={() => handleCardClick("cardId5")}
+            onClick={() => handleCardClick('cardId5')}
           />
         </CardGrid>
       </ScrollableImageContainer>
@@ -101,7 +101,7 @@ const CardGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 60px;
+  gap: 100px;
   margin-top: 420px;
 `;
 

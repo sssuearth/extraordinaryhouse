@@ -546,7 +546,7 @@ const NameInput = styled.input`
   border: 4px solid #000;
   background: #fff;
   height: 80px;
-  font-size: 32px; /* 일반 텍스트 크기 */
+  font-size: 20px; /* 일반 텍스트 크기 */
 
   @font-face {
     font-family: 'BMDOHYEON'; /* 폰트 이름 정의 */
