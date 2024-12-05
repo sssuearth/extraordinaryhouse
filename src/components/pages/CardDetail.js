@@ -214,7 +214,7 @@ const CardDetail = () => {
                 type="text"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
-                placeholder="닉네임"
+                placeholder=" "
                 required
               />
             </UserContain>
@@ -224,7 +224,7 @@ const CardDetail = () => {
                 type="number"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="금액(숫자 입력)"
+                placeholder=" "
                 required
               />
             </BidContainer>

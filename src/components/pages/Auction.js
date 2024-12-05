@@ -101,7 +101,7 @@ const CardGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 60px;
+  gap: 150px;ㄴ
   margin-top: 420px;
 `;
 
