@@ -52,7 +52,7 @@ const SideNavigation = () => {
           alt="Refresh"
           onMouseEnter={() => setRefreshSrc(refreshIconHover)}
           onMouseLeave={() => setRefreshSrc(refreshIcon)}
-          onClick={handleRefreshClick}
+          // onClick={handleRefreshClick}
         />
         <PoButtonImage
           src={overviewSrc}
